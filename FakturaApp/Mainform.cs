@@ -22,52 +22,59 @@ namespace FakturaAnalyse
 
         private void InitializeComponent()
         {
-            this.Text = "📄 Faktura Analyzer";
-            this.Size = new System.Drawing.Size(900, 600);
+            this.Text = "📄 Faktura Analyzer (Prototype)";
+            this.Size = new System.Drawing.Size(1600, 1000);   // Bigger window
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            // Use larger fonts for readability
+            var buttonFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            var labelFont = new System.Drawing.Font("Segoe UI", 12F);
+            var gridFont = new System.Drawing.Font("Segoe UI", 11F);
 
             btnOpenFile = new Button
             {
                 Text = "📂 Åbn Excel",
                 Location = new System.Drawing.Point(20, 20),
-                Size = new System.Drawing.Size(150, 40),
-                Font = new System.Drawing.Font("Segoe UI", 10F)
+                Size = new System.Drawing.Size(200, 50),
+                Font = buttonFont
             };
             btnOpenFile.Click += BtnOpenFile_Click;
 
             btnOpenPdf = new Button
             {
                 Text = "📄 Åbn PDF (Azure AI)",
-                Location = new System.Drawing.Point(180, 20),
-                Size = new System.Drawing.Size(170, 40),
-                Font = new System.Drawing.Font("Segoe UI", 10F)
+                Location = new System.Drawing.Point(240, 20),
+                Size = new System.Drawing.Size(220, 50),
+                Font = buttonFont
             };
             btnOpenPdf.Click += BtnOpenPdf_Click;
 
             btnExport = new Button
             {
                 Text = "💾 Eksporter til Excel",
-                Location = new System.Drawing.Point(360, 20),
-                Size = new System.Drawing.Size(170, 40),
-                Font = new System.Drawing.Font("Segoe UI", 10F),
+                Location = new System.Drawing.Point(480, 20),
+                Size = new System.Drawing.Size(220, 50),
+                Font = buttonFont,
                 Enabled = false
             };
             btnExport.Click += BtnExport_Click;
 
             dataGridView1 = new DataGridView
             {
-                Location = new System.Drawing.Point(20, 80),
-                Size = new System.Drawing.Size(840, 450),
+                Location = new System.Drawing.Point(20, 100),
+                Size = new System.Drawing.Size(1500, 700),   // Much larger grid
                 ReadOnly = true,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
+                Font = gridFont,
+                RowTemplate = { Height = 35 }               // Taller rows
             };
 
             lblStatus = new Label
             {
-                Location = new System.Drawing.Point(20, 540),
-                Size = new System.Drawing.Size(400, 30),
+                Location = new System.Drawing.Point(20, 820),
+                Size = new System.Drawing.Size(800, 40),
                 Text = "Ingen fil indlæst",
-                Font = new System.Drawing.Font("Segoe UI", 10F)
+                Font = labelFont
             };
 
             this.Controls.Add(btnOpenFile);
@@ -76,7 +83,6 @@ namespace FakturaAnalyse
             this.Controls.Add(dataGridView1);
             this.Controls.Add(lblStatus);
         }
-
         // Åbn Excel fil - await ProcessFile
         private async void BtnOpenFile_Click(object sender, EventArgs e)
         {

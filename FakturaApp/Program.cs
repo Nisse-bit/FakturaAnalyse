@@ -13,6 +13,9 @@ namespace FakturaAnalyse
     // does not work with excel
     //eksporter virker ikke
     
+    
+    // på fremtidig sigt
+    // give overblik over mange fakturere 
     internal static class Program
     {
         [STAThread]
